@@ -1,3 +1,25 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    // "module": "Node16",
+    "baseUrl": ".",
+    "paths": {
+      "@screens/*": ["src/screens/*"],
+      "@assets/*": ["src/assets/*"],
+      "@colors": ["src/assets/colors"],
+      "@utils": ["src/utils"],
+      "@components": ["src/components"],
+      "@navigation/*": ["src/navigation/*"],
+      "@store/*": ["src/store/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@routes/*": ["src/navigation/routes"],
+      "typeRoots": ["./node_modules/@types", "./declarations"]
+    },
+    "module": "esnext",
+    "moduleResolution": "bundler"
+  },
+  // "include": ["src"],
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
