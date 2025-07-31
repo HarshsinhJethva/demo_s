@@ -16,7 +16,7 @@ interface Address {
 }
 
 const useProductList = () => {
-  const [products, setproducts] = useState<Address[] | null>(null);
+  const [products, setproducts] = useState(null);
   const productListData = useSelector(state => state.productList);
 
   const dispatch = useDispatch();
@@ -33,12 +33,12 @@ const useProductList = () => {
   useEffect(() => {
     const response = helpers.apiResponseHandler(productListData, () => {
       dispatch(commonActions.clearproductListResponse());
-      setproducts(null);
+      // setproducts(null);
     });
 
     if (response?.data) {
       // console.log(response)
-      setproducts([response?.data]);
+      setproducts(response?.data);
     }
     // dispatch(commonActions.clearCustomerDetailResponse());
   }, [productListData, dispatch]);

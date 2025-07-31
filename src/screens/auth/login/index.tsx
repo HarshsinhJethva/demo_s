@@ -60,7 +60,7 @@ const Login = () => {
         renderItem={({ item }) => {
           console.log("item ====>>>", item)
           return (
-            <Text value={item?.title} />
+            <Text value={item?.name} />
           )
         }}
       />

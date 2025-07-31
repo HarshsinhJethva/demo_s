@@ -1,5 +1,5 @@
 export const apiRoutes = {
-  products:"/products"
+  products:"/products/categories"
 };
 
 export const methods = {
