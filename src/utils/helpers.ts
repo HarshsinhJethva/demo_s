@@ -2,11 +2,7 @@ import { GenericState } from '@store/types';
 import { hasDynamicIsland, hasNotch } from 'react-native-device-info';
 import Toast from 'react-native-toast-message';
 
-import {
-  Alert,
-  Linking,
-  Platform,
-} from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import {
   openSettings,
@@ -39,80 +35,47 @@ const show = {
   },
 };
 
-// const apiResponseHandler = (
-//   response: GenericState<any>,
-//   callback?: (response?: object) => void,
-// ) => {
-//   if (response?.data) {
-//     if (response?.data?.message?.error) {
-//       callback && callback();
-//       show?.error(response?.data?.message?.error);
-//     } else if (Array.isArray(response?.data?.message)) {
-//       return response?.data?.message?.length > 0 ? response?.data?.message : [];
-//     } else {
-//       return response?.data?.message || response?.data || false;
-//     }
-//   }
-//   if (response?.error) {
-//     if (typeof response?.error === 'string') {
-//       show?.error(response?.error);
-//     }
-//     if (typeof response?.error?.message === 'string') {
-//       show?.error(response?.error?.message);
-//     }
-//     if (typeof response?.error?.message?.message === 'string') {
-//       show?.error(response?.error?.message?.message);
-//     }
-//     if (response?.error?._error_message) {
-//       show?.error(response?.error?._error_message);
-//       callback && callback(response?.error?._error_message);
-//     }
-//     if (response?.error?._server_messages) {
-//       const err = JSON?.parse?.(response?.error?._server_messages);
-//       return callback && callback(err?.message);
-//     }
-//     if (response?.error?.exception) {
-//       show?.error(response?.error?.exception);
-//     }
-//     callback && callback(response?.error);
-//     return false;
-//   }
-
-//   return false;
-// };
-
 const apiResponseHandler = (
   response: GenericState<any>,
   callback?: (response?: object) => void,
 ) => {
-  if (response) {
-    // console.log(response)
-    // Dummy JSON APIs usually return clean top-level data
-    callback && callback(response);
-    return response;
-  }
-
-  if (response?.error) {
-    const error = response.error;
-
-    // Log or show error messages
-    if (typeof error === 'string') {
-      show?.error(error);
-    } else if (typeof error?.message === 'string') {
-      show?.error(error.message);
-    } else if (typeof error?.exception === 'string') {
-      show?.error(error.exception);
+  if (response?.data) {
+    if (response?.data?.message?.error) {
+      callback && callback();
+      show?.error(response?.data?.message?.error);
+    } else if (Array.isArray(response?.data?.message)) {
+      return response?.data?.message?.length > 0 ? response?.data?.message : [];
     } else {
-      show?.error('Something went wrong');
+      return response?.data?.message || response?.data || response || false;
     }
-
-    callback && callback(error);
+  }
+  if (response?.error) {
+    if (typeof response?.error === 'string') {
+      show?.error(response?.error);
+    }
+    if (typeof response?.error?.message === 'string') {
+      show?.error(response?.error?.message);
+    }
+    if (typeof response?.error?.message?.message === 'string') {
+      show?.error(response?.error?.message?.message);
+    }
+    if (response?.error?._error_message) {
+      show?.error(response?.error?._error_message);
+      callback && callback(response?.error?._error_message);
+    }
+    if (response?.error?._server_messages) {
+      const err = JSON?.parse?.(response?.error?._server_messages);
+      return callback && callback(err?.message);
+    }
+    if (response?.error?.exception) {
+      show?.error(response?.error?.exception);
+    }
+    callback && callback(response?.error);
     return false;
   }
 
   return false;
 };
-
 
 const formattedTime = (date: Date, withAmPm: boolean = false) => {
   return date?.toLocaleTimeString('en-US', {
@@ -308,7 +271,6 @@ const promptToEnableLocationServices = (
   );
 };
 
-
 const debounce = (func, delay = 500) => {
   let timeoutId;
 
@@ -321,11 +283,6 @@ const debounce = (func, delay = 500) => {
   };
 };
 
-
-
-
-
-
 const isInternetConnected = async () => {
   try {
     const state = await NetInfo.fetch();
@@ -336,22 +293,10 @@ const isInternetConnected = async () => {
   }
 };
 
-
-
-
-
-
-
 const capitalize = (str: string) => {
   if (!str) return '';
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
-
-
-
-
-
-
 
 export default {
   formattedTime,

@@ -1,19 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from './redux';
-import { commonActions } from '../../store';
-import { helpers } from '../../utils';
-// import { helpers } from '@utils';
-// import commonActions from '@store/common';
-
-interface Address {
-  address_title: string;
-  address_line1: string;
-  address_line2: string;
-  city: string;
-  state: string;
-  pincode: string;
-  country: string;
-}
+import commonActions from '@store/common';
+import { helpers } from '@utils';
 
 const useProductList = () => {
   const [products, setproducts] = useState(null);
@@ -27,7 +15,6 @@ const useProductList = () => {
 
   useEffect(() => {
     dispatch(commonActions.productList());
-
   }, [dispatch]);
 
   useEffect(() => {
@@ -37,18 +24,15 @@ const useProductList = () => {
     });
 
     if (response?.data) {
-      // console.log(response)
-      setproducts(response?.data);
+      // console.log(response?.data?.events);
+      setproducts(response?.data?.events);
     }
     // dispatch(commonActions.clearCustomerDetailResponse());
   }, [productListData, dispatch]);
 
   const onRefresh = () => {
     dispatch(commonActions.productList());
-
   };
-
-
 
   return { products, loader, onRefresh };
 };

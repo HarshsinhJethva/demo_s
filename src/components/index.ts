@@ -12,6 +12,7 @@ export { default as SvgIcon } from './common/svgIcon';
 export { default as Modal } from './common/modal';
 export { default as ConfirmModal } from './common/confirmModal';
 export { default as Switch } from './common/switch';
+export { default as CardContainer } from './common/cardContainer';
 
 // forms
 export { default as Button } from './forms/button';

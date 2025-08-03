@@ -1,10 +1,8 @@
-// import { apiCallBegan } from '@store/apiActions';
-// import { apiRoutes, methods } from '@store/apiRoutes';
-// import createGenericSlice from '@store/types';
+import { apiCallBegan } from '@store/apiActions';
+import { apiRoutes, methods } from '@store/apiRoutes';
+import createGenericSlice from '@store/types';
 
-import { apiCallBegan } from "../apiActions";
-import { apiRoutes, methods } from "../apiRoutes";
-import createGenericSlice from "../types";
+
 
 interface DataType {
     message: {}[];
@@ -45,7 +43,7 @@ export default slice.reducer;
 export const productList = () => {
     return apiCallBegan({
         url: `${apiRoutes.products}`,
-        method: methods.GET,
+        method: methods.POST,
         onStart: requested.type,
         onSuccess: success.type,
         onFailed: failed.type,

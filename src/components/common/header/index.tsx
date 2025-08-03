@@ -97,7 +97,7 @@ const Header = ({
         </View>
 
         <View style={[styles.actionWrapper, styles.rightActionWrapper]}>
-         
+          
         </View>
       </View>
     </>

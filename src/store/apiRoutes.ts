@@ -1,5 +1,6 @@
 export const apiRoutes = {
-  products:"/products/categories"
+  products: '/events-listing',
+  login: '/login',
 };
 
 export const methods = {

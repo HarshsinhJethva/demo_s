@@ -25,6 +25,7 @@ import { FieldError, FieldTitle, Touchable } from '@components';
 
 import useStyles from './styles';
 import { responsive } from '@utils';
+import useGlobalStyles from '@assets/styles';
 
 interface AppTextInputProps extends TextInputProps {
   title?: string;
@@ -71,14 +72,16 @@ const TextInput = ({
   const styles = useStyles();
   const { colors } = useTheme();
   const { t } = useTranslation();
+    const { shadow } = useGlobalStyles()
+
 
   const handleEyeIcon = useCallback((): void => {
     setSecureTextEntry(!secureTextEntry);
   }, [secureTextEntry]);
 
-  // const PasswordIcon = useMemo(() => {
-  //   return secureTextEntry ? icons.EYESCLOSE : icons.EYESOPEN;
-  // }, [secureTextEntry]);
+  const PasswordIcon = useMemo(() => {
+    return secureTextEntry ? icons.Eye : icons.Eye;
+  }, [secureTextEntry]);
 
   const changeHandler = (v: string) => {
     if (digit) {
@@ -94,13 +97,14 @@ const TextInput = ({
 
   return (
     <>
-      <FieldTitle title={title} required={required}  />
+      <FieldTitle title={title} required={required} />
       <View
         style={[
           styles.inputWrapper,
           multiline && styles.multilineWrapper,
           wrapperStyles,
           !editable && styles.notEditable,
+          shadow
         ]}
       >
         {LeftIcon && (
@@ -136,11 +140,11 @@ const TextInput = ({
           editable={editable}
           allowFontScaling={false}
         />
-        {/* {secure && (
+        {secure && (
           <Touchable onPress={handleEyeIcon} style={styles.closeEye}>
-            <PasswordIcon height={vs(25)} width={vs(25)} />
+            <PasswordIcon height={responsive.height(2.5)} width={responsive.height(2.5)} />
           </Touchable>
-        )} */}
+        )}
       </View>
       <FieldError error={error} />
     </>

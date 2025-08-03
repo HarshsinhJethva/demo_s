@@ -24,8 +24,8 @@ const StatusBar = ({
   const { colors } = useTheme();
 
   const resolvedBackgroundColor = useMemo(() => {
-    return backgroundColor || colors.secondary;
-  }, [backgroundColor, colors.secondary]);
+    return backgroundColor || colors.white;
+  }, [backgroundColor, colors.white]);
 
   const paddingTop = absolute
     ? Platform.OS === 'ios'

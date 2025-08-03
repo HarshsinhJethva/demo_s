@@ -11,9 +11,10 @@ const useStyles = () => {
     inputWrapper: {
       height: responsive.height(5),
       borderColor: colors.gray,
-      borderWidth: responsive.height(0.1),
+      // borderWidth: responsive.height(0.1),
       borderRadius: responsive.height(1),
       flexDirection: 'row',
+      backgroundColor: colors.primary,
     },
     input: {
       flex: 1,
@@ -41,7 +42,7 @@ const useStyles = () => {
     },
     closeEye: {
       marginHorizontal: responsive.width(1.6),
-      // justifyContent: 'center',
+      justifyContent: 'center',
     },
   });
 };
